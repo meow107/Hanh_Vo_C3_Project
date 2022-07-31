@@ -10,23 +10,31 @@ public class Restaurant {
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
 
+    private LocalTime currentTime;
+
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
         this.location = location;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
+        this.currentTime = LocalTime.now();
     }
 
     public boolean isRestaurantOpen() {
-        return true;
-        //DELETE ABOVE STATEMENT AND WRITE CODE HERE
+        if(this.getCurrentTime().isAfter(this.openingTime) && this.getCurrentTime().isBefore(this.closingTime))  {
+            return true;
+        }
+        return false;
     }
 
-    public LocalTime getCurrentTime(){ return  LocalTime.now(); }
+    public LocalTime getCurrentTime(){ return  this.currentTime; }
+
+    public void setCurrentTime(LocalTime currentTime) {
+        this.currentTime = currentTime;
+    }
 
     public List<Item> getMenu() {
-        return null;
-        //DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
+        return this.menu;
     }
 
     private Item findItemByName(String itemName){
