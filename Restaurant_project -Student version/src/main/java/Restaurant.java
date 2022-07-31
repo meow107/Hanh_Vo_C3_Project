@@ -71,4 +71,11 @@ public class Restaurant {
         return name;
     }
 
+    public int countTotalPrice(String[] orders) {
+        int total = 0;
+        for(String order : orders) {
+            total = total + findItemByName(order).getPrice();
+        }
+        return total;
+    }
 }
